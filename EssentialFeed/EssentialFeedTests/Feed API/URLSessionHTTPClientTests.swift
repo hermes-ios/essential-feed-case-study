@@ -101,7 +101,8 @@ class URLSessionHTTPClientTests: XCTestCase {
 		
 		switch result {
 		case let .failure(error):
-			return error
+            let error = error as NSError
+            return NSError(domain: error.domain, code: error.code, userInfo: nil)
 		default:
 			XCTFail("Expected failure, got \(result) instead", file: file, line: line)
 			return nil
